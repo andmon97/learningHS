@@ -132,7 +132,9 @@ ex
 
 -- Using zip we can define a function returns the list of all pairs of adjacent elements from a list:
 adjacents       :: [a] -> [(a,a)]
-adjacents xs    = zip xs (tail xs)
+adjacents xs    = zip xs (Main.tail xs)
 
 --Using adjacents we can define a function that decides if the elements in a list are sorted:
-
+sorted          :: Ord a => [a] -> Bool
+sorted xs       =
+    and [x <= y | (x,y) <- adjacents xs]
