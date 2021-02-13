@@ -83,6 +83,56 @@ tail (_ : xs)   = xs
 
 -- INTEGER PATTERNS --
 
-pred        :: Int -> Int
+{-pred        :: Int -> Int
 pred (n+1)  = n 
--- Pred maps any positive integer to its predecessor. Patterns must be parenthesised, because app has priority over + --
+-}
+-- Pred maps any positive integer to its predecessor. Patterns must be parenthesised, because app has priority over. WORKS IN HS 98 NOT IN 2010!!!--
+
+
+
+-- DEPENDANT GENERATORS
+-- Using a dependant generator we can define the library function that concatenates a list of lists:
+
+concat      :: [[a]] -> [a]
+concat xss  = [x | xs <- xss, x <- xs]
+{- example
+> concat [[1,2,3],[4,5],[6]]
+[1,2,3,4,5,6]
+-}
+
+
+
+-- GUARDS 
+-- List comprehensions can use guards to restrict the values produced by earlier generators
+
+-- Using a guard we can define a function that maps a positive integer to its list of factors:
+factors     :: Int -> [Int]
+factors n   = 
+    [x | x <- [1..n], n `mod` x == 0]
+
+-- A positive integer is prime if its only factors are 1 and itself.  Hence, using factors we can define a function that decides if a number is prime:
+prime       :: Int -> Bool
+prime n     = factors n == [1,n]
+
+-- Using a guard we can now define a function that returns the list of all primes up to a given limit:
+primes      :: Int -> [Int]
+primes n    = 
+    [x | x <- [1..n], factors x == [1,x]]  -- ALSO primes n = [x | x  [2..n], prime x] but it works :)
+
+{-
+The Zip Function
+A useful library function is zip, which maps two lists to a list of pairs of their corresponding elements.
+zip :: [a] -> [b] -> [(a,b)]
+
+ex
+> zip [’a’,’b’,’c’] [1,2,3,4]
+
+[(’a’,1),(’b’,2),(’c’,3)]
+-}
+
+-- Using zip we can define a function returns the list of all pairs of adjacent elements from a list:
+adjacents       :: [a] -> [(a,a)]
+adjacents xs    = zip xs (tail xs)
+
+--Using adjacents we can define a function that decides if the elements in a list are sorted:
+
