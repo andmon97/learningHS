@@ -90,6 +90,18 @@ pred (n+1)  = n
 
 
 
+-- LAMBDA EXPRESSION
+--Lambda expressions can be used to give a formal meaning to functions defined using currying
+
+{-
+odds :: Int → [Int ]
+odds n = map f [0 . . n − 1]
+where f x = x ∗ 2 + 1
+-}
+-- can be
+odds n = map (\x -> x * 2 + 1) [0 .. n-1]
+
+
 -- DEPENDANT GENERATORS
 -- Using a dependant generator we can define the library function that concatenates a list of lists:
 
