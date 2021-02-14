@@ -1,3 +1,6 @@
+import Data.Char
+
+
 -- FIRST FUNCTIONS--
 -- Raddoppia x param e quadrupla richiamando double di double di param x --
 double x = x + x
@@ -150,3 +153,22 @@ adjacents xs    = zip xs (Main.tail xs)
 sorted          :: Ord a => [a] -> Bool
 sorted xs       =
     and [x <= y | (x,y) <- adjacents xs]
+
+
+
+
+-- STRINGS COMPREHENSION
+--A string is a sequence of characters enclosed in double quotes.  Internally, however, strings are represented as lists of characters.
+
+--Similarly, list comprehensions can also be used to define functions on strings, such as a function that counts the lower-case letters in a string
+lowers   :: String -> Int
+lowers xs =
+   length [x | x <- xs, Data.Char.isLower x]
+
+
+-- EXCERCISES
+-- A triple (x,y,z) of positive integers is called pythagorean if x^2 + y^2 = z^2.  Using a list comprehension, define a function that maps an integer n to all such triples with components in [1..n].  
+
+pyths           :: Int -> [(Int, Int, Int)]
+pyths n         =
+    [(x, y, z) | x <- [1..n], y <- [1..n], z <- [1..n], x^2 + y^2 == z^2]
