@@ -177,6 +177,11 @@ factors'        :: Int -> [Int]
 factors' n      =
     [x | x <- [1..n-1], n `mod` x == 0]
 
-perfects :: Int -> [Int]
-perfects n = 
+perfects        :: Int -> [Int]
+perfects n      = 
     [x | x <- [1..n], sum (factors' x) == x]
+
+-- "The scalar product of two lists of integers xs and ys of length n is give by the sum of the products of the corresponding integers. Using a list comprehension, define a function that returns the scalar product of two lists"
+scalar_product          :: [Int] -> [Int] -> Int 
+scalar_product xs ys    =
+    sum [x * y | (x,y) <- zip xs ys]
