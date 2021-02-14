@@ -57,3 +57,28 @@ qSort (x:xs)    =
     where
         smaller = [a | a <- xs, a <= x]
         larger  = [b | b <- xs, b > x]
+
+
+
+--      EXCERCISES      --
+
+-- "Decide if all logical values in a list are true" -- 
+and'                :: [Bool] -> Bool
+and' []             = True 
+and' (false : _)    = False
+and' (_ : xs)       = and' xs
+
+-- "Concatenate a list of lists"
+concat'             :: [[a]] -> [a]
+concat' []          = []
+concat' (x:xs)      = x ++ concat' xs
+
+-- "Produce a list with n identical elements"
+replicate'          :: Int -> a -> [a]
+replicate' 0 x      = []
+replicate' n x      = x : replicate' (n-1) x
+
+-- "Select the nth element of a list"
+(!!!)               :: [a] -> Int -> a
+(x : _)  !!! 0      = x
+(_ : xs) !!! n      = xs !!! (n-1)
