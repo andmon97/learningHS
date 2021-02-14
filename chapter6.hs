@@ -35,3 +35,25 @@ zipR                :: [a] -> [b] -> [(a,b)]
 zipR [] _           = []
 zipR _ []           = []
 zipR (x:xs) (y:ys)  = (x,y) : zipR xs ys
+
+-- Remove the first n elements from a list
+dropR                :: Int -> [a] -> [a]
+dropR 0     xs       = xs
+dropR (n+1) []       = []
+dropR (n+1) (_:xs)   = dropR n xs
+
+
+
+--     QUICK SORT       --
+{-
+The quicksort algorithm for sorting a list of integers can be specified by the following two rules:
+1) The empty list is already sorted;
+2) Non-empty lists can be sorted by sorting the tail values <= the head, sorting the tail values > the head, and then appending the resulting lists on either side of the head value.
+-}
+qSort           :: [Int] -> [Int]
+qSort []        = []
+qSort (x:xs)    =
+    qSort smaller ++ [x] ++ qSort larger
+    where
+        smaller = [a | a <- xs, a <= x]
+        larger  = [b | b <- xs, b > x]
