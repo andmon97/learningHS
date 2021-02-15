@@ -1,13 +1,7 @@
 import Data.Char
 
 
--- FIRST FUNCTIONS--
--- Raddoppia x param e quadrupla richiamando double di double di param x --
-double x = x + x
-quadruple x = double (double x)
 
--- Fattoriale di un numero come prodotto di elementi di una lista contentente da uno a n--
-factorial n = product [1..n]
 
 -- n é uguale a 10 diviso 2 cioé lunghezza di xs--
 n = a `div` length xs
