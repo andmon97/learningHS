@@ -82,3 +82,23 @@ replicate' n x      = x : replicate' (n-1) x
 (!!!)               :: [a] -> Int -> a
 (x : _)  !!! 0      = x
 (_ : xs) !!! n      = xs !!! (n-1)
+
+-- "Decide if a value is an element of a list"
+elem'               :: Eq a => a -> [a] -> Bool
+elem' y []          = False
+elem' y (x:xs)      = if y == x then True else elem' y xs
+
+-- "Define a recursive function merge ∷ Ord a ⇒ [a] → [a] → [a] that merges two sorted lists of values to give a single sorted list"
+merge               :: Ord a => [a] -> [a] -> [a]
+merge [] []         = []
+merge xs []         = xs
+merge [] ys         = ys
+merge (x:xs) (y:ys) =
+    if x < y 
+        then x : merge xs (y:ys)
+        else y : merge (x:xs) ys
+
+
+-- "Define a recursive function msort ∷ Orda ⇒ [a] → [a] that implements merge sort, which can be specified by the following two rules:
+-- 1) Lists of length ≤ 1 are already sorted;
+-- 2) Other lists can be sorted by sorting the two halves and merging the resulting lists"
