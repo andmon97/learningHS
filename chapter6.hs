@@ -102,3 +102,10 @@ merge (x:xs) (y:ys) =
 -- "Define a recursive function msort ∷ Orda ⇒ [a] → [a] that implements merge sort, which can be specified by the following two rules:
 -- 1) Lists of length ≤ 1 are already sorted;
 -- 2) Other lists can be sorted by sorting the two halves and merging the resulting lists"
+msort               :: Ord a => [a] -> [a]
+msort []            = []
+msort (x : [])      = [x]
+msort xs            =
+    merge (msort (take divideAt xs)) (msort (drop divideAt xs))
+    where
+        divideAt = div (length xs) 2
