@@ -1,7 +1,7 @@
 # Learning Haskell
 
 There are some Haskell scripts from "Programming in Haskell" (Graham Hutton, 2007) and some excercises.
-I make this excercises for my exam "Formal Methods in Computer Science".
+I made this exercises for my exam "Formal Methods in Computer Science".
 
 ## Installation
 
