@@ -84,3 +84,12 @@ takeWhile' p (x:xs)
 
 
 
+-- EXERCISES --
+
+-- "Express the comprehension [f x | x ← xs, p x] using the functions map and filter."
+comprehension xs f p = map f (filter p xs) -- can also be comprehension xs f p = map f $ filter p xs
+
+-- "Redefine map f and filter p using foldr."
+map''' f xs     = foldr (\x function -> f x: function) []
+
+filter''' p xs  = foldr (\x predicate -> if p x then x : predicate  else predicate) []
