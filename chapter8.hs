@@ -5,8 +5,8 @@ type Parser a   = String -> [(a, String)]
 --          BASIC PARSERS           --
 
 -- the parser return v always succeeds with the result value v, without consuming any of the input string
-return          :: a -> Parser a 
-return v        = \inp -> [(v, inp)]
+return'         :: a -> Parser a 
+return' v       = \inp -> [(v, inp)]
 
 -- Whereas return v always succeeds, the dual parser failure always fails, regardless of the contents of the input string
 failure         :: Parser a 
@@ -45,3 +45,13 @@ second parser, which is then applied to the output string to give the final resu
 -- examplea parser that consumes three characters, discards the second, and returns the first and third as a pair can now be defined as follows
 
 
+
+--          CHOICE          --
+{-
+Another natural way of combining two parsers is to apply the first parser to the
+input string, and if this fails to apply the second instead. Such a choice operator
++++ (read as “or else”) can be defined as follows -}
+(+++)           :: Parser a -> Parser a -> Parser a 
+p +++ q         = \inp -> case parse p inp of
+                                [] -> parse q inp 
+                                [(v, out)] -> [(v, out)] 
