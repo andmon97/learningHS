@@ -105,7 +105,16 @@ safetailC []    = []
 safetailC (_:xs)= tail xs
 
 -- "Give three possible definitions for the logical or operator (||) using pattern matching"
+(|||)           :: Bool -> Bool -> Bool
+(|||) a b       = if a == True then True else 
+                                                if b == True then True
+                                                else False
 
+(||||)           :: Bool -> Bool -> Bool
+(||||) a b       
+                | a == True = True
+                | b == True = True
+                | a == False && b== False = False
 
 -- "Redefine the following version of (&&) using conditionals rather than patterns
 -- True && True = True
